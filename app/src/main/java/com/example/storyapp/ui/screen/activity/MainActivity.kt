@@ -1,4 +1,4 @@
-package com.example.storyapp.ui.activity
+package com.example.storyapp.ui.screen.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

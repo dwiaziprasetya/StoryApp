@@ -1,4 +1,4 @@
-package com.example.storyapp.ui.activity.login
+package com.example.storyapp.ui.screen.activity.login
 
 import android.os.Bundle
 import android.util.Log

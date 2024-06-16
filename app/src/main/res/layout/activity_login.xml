@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:background="?attr/colorOnPrimary"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.login.LoginActivity">
+    tools:context=".ui.screen.activity.login.LoginActivity">
 
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/welcome"
         android:textSize="40sp"
@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_password">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.storyapp.ui.component.CustomEditTextPassword
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="60dp"

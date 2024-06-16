@@ -1,10 +1,11 @@
-package com.example.storyapp.ui.activity.signup
+package com.example.storyapp.ui.screen.activity.signup
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -32,6 +33,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Registration failed: ${response.message}", Toast.LENGTH_SHORT).show()
                 Log.e("ERROR", response.message)
             } else {
+                showAlert()
                 Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
             }
         }
@@ -44,6 +46,15 @@ class SignUpActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 viewModel.register(username, email, password)
             }
+        }
+    }
+
+    private fun showAlert() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Success")
+            setMessage("Account has been created")
+            create()
+            show()
         }
     }
 }

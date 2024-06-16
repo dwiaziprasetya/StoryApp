@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorOnPrimary"
-    tools:context=".ui.activity.signup.SignUpActivity">
+    tools:context=".ui.screen.activity.signup.SignUpActivity">
 
     <TextView
         android:id="@+id/tv_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/sign_up"
         android:textSize="40sp"
@@ -124,7 +124,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_password">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.storyapp.ui.component.CustomEditTextPassword
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -139,61 +139,20 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_confirm_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/confirm_your_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password_layout"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_confirm_password_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:endIconMode="password_toggle"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_confirm_password">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/custom_input"
-            android:hint="@string/confirm_your_password"
-            android:importantForAutofill="no"
-            android:paddingStart="12dp"
-            android:inputType="textPassword"
-            android:paddingEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="TextFields"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_create_account"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="34dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/poppinsmedium"
         android:text="@string/create_account"
-        android:textColor="@color/white"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_confirm_password_layout"
-        app:layout_constraintStart_toStartOf="@+id/et_confirm_password_layout"
-        app:layout_constraintTop_toBottomOf="@+id/et_confirm_password_layout" />
+        app:layout_constraintEnd_toEndOf="@+id/et_password_layout"
+        app:layout_constraintStart_toStartOf="@+id/et_password_layout"
+        app:layout_constraintTop_toBottomOf="@+id/et_password_layout" />
 
     <TextView
         android:id="@+id/tv_already_have_account"
