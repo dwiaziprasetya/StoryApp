@@ -36,14 +36,14 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-//        binding.btnCreateAccount.setOnClickListener {
-//            val username = binding.etUsername.text.toString().trim()
-//            val email = binding.etEmailAddress.text.toString().trim()
-//            val password = binding.etPassword.text.toString().trim()
-//
-//            lifecycleScope.launch {
-//                viewModel.register(username, email, password)
-//            }
-//        }
+        binding.btnCreateAccount.setOnClickListener {
+            val username = binding.etUsername.text.toString().trim()
+            val email = binding.etEmailAddress.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+
+            lifecycleScope.launch {
+                viewModel.register(username, email, password)
+            }
+        }
     }
 }

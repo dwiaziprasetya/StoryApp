@@ -4,16 +4,19 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.di.Injection
-import com.example.storyapp.repository.StroryAppRepository
+import com.example.storyapp.repository.UserRepository
+import com.example.storyapp.ui.activity.login.LoginViewModel
 import com.example.storyapp.ui.activity.signup.SignUpViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(
-    private val storyAppRepository: StroryAppRepository
+    private val userRepository: UserRepository
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
-            return SignUpViewModel(storyAppRepository) as T
+            return SignUpViewModel(userRepository) as T
+        } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+            return LoginViewModel(userRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

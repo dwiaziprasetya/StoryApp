@@ -1,10 +1,10 @@
 package com.example.storyapp.repository
 
+import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.RegisterResponse
-import com.example.storyapp.data.remote.retrofit.ApiConfig
 import com.example.storyapp.data.remote.retrofit.ApiService
 
-class StroryAppRepository private constructor(
+class UserRepository private constructor(
     private val apiService : ApiService
 ){
 
@@ -16,14 +16,21 @@ class StroryAppRepository private constructor(
         return apiService.register(username, email, password)
     }
 
+    suspend fun login(
+        email: String,
+        password: String
+    ) : LoginResponse {
+        return apiService.login(email, password)
+    }
+
     companion object {
         @Volatile
-        private var instance : StroryAppRepository? = null
+        private var instance : UserRepository? = null
         fun getInstance(
             apiService: ApiService
-        ) : StroryAppRepository =
+        ) : UserRepository =
             instance ?: synchronized(this) {
-                instance ?: StroryAppRepository(apiService)
+                instance ?: UserRepository(apiService)
             }.also {
                 instance = it
             }

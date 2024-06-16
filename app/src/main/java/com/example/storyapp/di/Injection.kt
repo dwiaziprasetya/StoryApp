@@ -2,12 +2,12 @@
 
     import android.content.Context
     import com.example.storyapp.data.remote.retrofit.ApiConfig
-    import com.example.storyapp.repository.StroryAppRepository
+    import com.example.storyapp.repository.UserRepository
 
     object Injection {
-        fun provideRepository(context: Context): StroryAppRepository {
+        fun provideRepository(context: Context): UserRepository {
             val apiService = ApiConfig.getApiService()
-            return StroryAppRepository.getInstance(apiService)
+            return UserRepository.getInstance(apiService)
         }
 
     }
