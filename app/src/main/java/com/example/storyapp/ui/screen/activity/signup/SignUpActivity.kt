@@ -10,12 +10,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.databinding.ActivitySignUpBinding
+import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySignUpBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +26,36 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val loadingDialog: SweetAlertDialog =
+            SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
+
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
         val viewModel: SignUpViewModel by viewModels { factory }
 
+
         viewModel.registerResponse.observe(this) { response ->
             if (response.error) {
+                DialogHelper.showErrorDialog(
+                    this,
+                    "Registration Failed",
+                    response.message
+                )
                 Toast.makeText(this, "Registration failed: ${response.message}", Toast.LENGTH_SHORT).show()
                 Log.e("ERROR", response.message)
             } else {
-                showAlert()
-                Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
+                DialogHelper.showSuccessDialog(
+                    this,
+                    "Success",
+                    "Account has been created"
+                )
+            }
+        }
+
+        viewModel.loading.observe(this) { loading ->
+            if (loading) {
+                loadingDialog.show()
+            } else {
+                loadingDialog.dismiss()
             }
         }
 
@@ -71,14 +94,5 @@ class SignUpActivity : AppCompatActivity() {
                 login
             )
         }.start()
-    }
-
-    private fun showAlert() {
-        AlertDialog.Builder(this).apply {
-            setTitle("Success")
-            setMessage("Account has been created")
-            create()
-            show()
-        }
     }
 }

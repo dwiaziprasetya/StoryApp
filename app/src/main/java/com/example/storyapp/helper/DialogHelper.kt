@@ -1,5 +1,6 @@
 package com.example.storyapp.helper
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.widget.TextView
@@ -8,6 +9,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.R
 
 object DialogHelper {
+
+
     private fun getCustomFont(context: Context): Typeface? {
         return ResourcesCompat.getFont(context, R.font.poppinsmedium)
     }
@@ -20,10 +23,12 @@ object DialogHelper {
         showDialog(context, title, textContent, SweetAlertDialog.SUCCESS_TYPE)
     }
 
+
     fun showLoadingDialog(
         context: Context,
         title: String?,
         textContent: String?,
+        isShowing: Boolean = true
     ) {
         showDialog(context, title, textContent, SweetAlertDialog.PROGRESS_TYPE)
     }
@@ -36,11 +41,13 @@ object DialogHelper {
         showDialog(context, title, textContent, SweetAlertDialog.ERROR_TYPE)
     }
 
+
     private fun showDialog(
         context: Context,
         title: String?,
         textContent: String?,
-        alertType: Int
+        alertType: Int,
+        isShowing: Boolean = true
     ) {
         val customFont = getCustomFont(context)
 
