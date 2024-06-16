@@ -34,20 +34,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
 
-    <EditText
-        android:id="@+id/et_email_address"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_email_address_layout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@drawable/custom_input"
-        android:hint="@string/enter_your_email"
-        android:importantForAutofill="no"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_email_address"
-        app:layout_constraintTop_toBottomOf="@+id/tv_email_address"
-        tools:ignore="TextFields"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email_address">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email_address"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_input"
+            android:hint="@string/enter_your_email"
+            android:importantForAutofill="no"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TextFields" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/tv_password"
@@ -61,22 +72,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email_address" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email_address_layout"/>
 
-    <EditText
-        android:id="@+id/et_password"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_password_layout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@drawable/custom_input"
-        android:hint="@string/enter_your_password"
-        android:importantForAutofill="no"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        app:endIconMode="password_toggle"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_password"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password"
-        tools:ignore="TextFields"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_input"
+            android:hint="@string/enter_your_password"
+            android:importantForAutofill="no"
+            android:paddingStart="12dp"
+            android:inputType="textPassword"
+            android:paddingEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TextFields"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
@@ -88,12 +111,12 @@
         android:fontFamily="@font/poppinsmedium"
         android:layout_marginTop="34dp"
         android:background="@drawable/custom_button"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password"/>
+        app:layout_constraintEnd_toEndOf="@+id/et_password_layout"
+        app:layout_constraintStart_toStartOf="@+id/et_password_layout"
+        app:layout_constraintTop_toBottomOf="@+id/et_password_layout"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_do_you_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
@@ -106,6 +129,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/tv_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -115,7 +139,7 @@
         android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/tv_do_you_have_account"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 
