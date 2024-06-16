@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="?attr/colorOnPrimary"
     android:layout_height="match_parent"
     tools:context=".ui.activity.LoginActivity">
 
@@ -15,7 +15,6 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/welcome"
-        android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
