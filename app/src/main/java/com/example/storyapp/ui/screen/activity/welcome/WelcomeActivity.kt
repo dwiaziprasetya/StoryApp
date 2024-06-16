@@ -2,12 +2,9 @@ package com.example.storyapp.ui.screen.activity.welcome
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityWelcomeBinding
+import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.ui.screen.activity.login.LoginActivity
 import com.example.storyapp.ui.screen.activity.signup.SignUpActivity
 

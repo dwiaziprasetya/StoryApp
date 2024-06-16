@@ -7,6 +7,7 @@ android {
     namespace = "com.example.storyapp"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.example.storyapp"
         minSdk = 24
@@ -40,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.library)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.lifecycle.viewmodel.ktx)
