@@ -1,7 +1,10 @@
 package com.example.storyapp.ui.screen.activity.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -44,5 +47,32 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.login(email, password)
             }
         }
+
+        playAnimation()
+    }
+
+    private fun playAnimation(){
+        val welcome = ObjectAnimator.ofFloat(binding.tvWelcome, View.ALPHA, 1f).setDuration(1000)
+        val emailAddress = ObjectAnimator.ofFloat(binding.tvEmailAddress, View.ALPHA, 1f).setDuration(1000)
+        val emailAddressInput = ObjectAnimator.ofFloat(binding.etEmailAddressLayout, View.ALPHA, 1f).setDuration(1000)
+        val password = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(1000)
+        val passwordInput = ObjectAnimator.ofFloat(binding.etPasswordLayout, View.ALPHA, 1f).setDuration(1000)
+        val buttonLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(1000)
+        val dontHaveAccount = ObjectAnimator.ofFloat(binding.tvDoYouHaveAccount, View.ALPHA, 1f).setDuration(1000)
+        val signUp = ObjectAnimator.ofFloat(binding.tvSignUp, View.ALPHA, 1f).setDuration(1000)
+
+        AnimatorSet().apply {
+            playTogether(
+                welcome,
+                emailAddress,
+                emailAddressInput,
+                password,
+                passwordInput,
+                buttonLogin,
+                dontHaveAccount,
+                signUp
+            )
+            startDelay = 500
+        }.start()
     }
 }

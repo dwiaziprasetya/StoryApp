@@ -9,10 +9,10 @@
     <style name="Theme.StoryApp" parent="Base.Theme.StoryApp"/>
     <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundMode">outline</item>
-        <item name="boxStrokeColor">@color/blueOcean</item> <!-- Ganti dengan warna stroke yang diinginkan -->
-        <item name="boxCornerRadiusTopStart">8dp</item> <!-- Ganti dengan radius yang diinginkan -->
-        <item name="boxCornerRadiusTopEnd">8dp</item> <!-- Ganti dengan radius yang diinginkan -->
-        <item name="boxCornerRadiusBottomEnd">8dp</item> <!-- Ganti dengan radius yang diinginkan -->
+        <item name="boxStrokeColor">@color/purpleOcean</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
         <item name="boxCornerRadiusBottomStart">8dp</item>
     </style>
 </resources>

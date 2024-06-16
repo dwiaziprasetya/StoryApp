@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.StoryApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/blueOcean</item>
+        <item name="colorPrimary">@color/purpleOcean</item>
         <item name="colorOnPrimary">@color/blackOcean</item>
         <item name="android:statusBarColor">?attr/colorOnPrimary</item>
     </style>

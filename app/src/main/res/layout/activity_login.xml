@@ -16,6 +16,8 @@
         android:fontFamily="@font/poppinsbold"
         android:text="@string/welcome"
         android:textSize="40sp"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
