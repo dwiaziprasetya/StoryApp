@@ -72,7 +72,6 @@ class LoginActivity : AppCompatActivity() {
                 dontHaveAccount,
                 signUp
             )
-            startDelay = 500
         }.start()
     }
 }

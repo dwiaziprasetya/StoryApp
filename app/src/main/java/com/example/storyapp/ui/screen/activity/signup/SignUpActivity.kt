@@ -1,17 +1,15 @@
 package com.example.storyapp.ui.screen.activity.signup
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.storyapp.R
-import com.example.storyapp.databinding.ActivityLoginBinding
 import com.example.storyapp.databinding.ActivitySignUpBinding
 import com.example.storyapp.helper.ViewModelFactory
 import kotlinx.coroutines.launch
@@ -47,6 +45,32 @@ class SignUpActivity : AppCompatActivity() {
                 viewModel.register(username, email, password)
             }
         }
+
+        playAnimation()
+    }
+
+    private fun playAnimation() {
+        val signUp = ObjectAnimator.ofFloat(binding.tvSignUp, View.ALPHA, 1f).setDuration(1000)
+        val emailAddress = ObjectAnimator.ofFloat(binding.tvEmailAddress, View.ALPHA, 1f).setDuration(1000)
+        val emailAddressInput = ObjectAnimator.ofFloat(binding.etEmailAddressLayout, View.ALPHA, 1f).setDuration(1000)
+        val password = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(1000)
+        val passwordInput = ObjectAnimator.ofFloat(binding.etPasswordLayout, View.ALPHA, 1f).setDuration(1000)
+        val buttonCreateAccount = ObjectAnimator.ofFloat(binding.btnCreateAccount, View.ALPHA, 1f).setDuration(1000)
+        val dontHaveAccount = ObjectAnimator.ofFloat(binding.tvAlreadyHaveAccount, View.ALPHA, 1f).setDuration(1000)
+        val login = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA, 1f).setDuration(1000)
+
+        AnimatorSet().apply {
+            playTogether(
+                signUp,
+                emailAddress,
+                emailAddressInput,
+                password,
+                passwordInput,
+                buttonCreateAccount,
+                dontHaveAccount,
+                login
+            )
+        }.start()
     }
 
     private fun showAlert() {
