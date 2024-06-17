@@ -2,6 +2,7 @@ package com.example.storyapp.ui.screen.activity.signup
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySignUpBinding
-
+    private var loadingDialog: SweetAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +27,10 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val loadingDialog: SweetAlertDialog =
-            SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
-
+        val loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).apply {
+            setTitleText("Please wait...")
+            progressHelper.barColor = Color.parseColor("#899BEA")
+        }
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
         val viewModel: SignUpViewModel by viewModels { factory }
 
@@ -41,7 +43,6 @@ class SignUpActivity : AppCompatActivity() {
                     response.message
                 )
                 Toast.makeText(this, "Registration failed: ${response.message}", Toast.LENGTH_SHORT).show()
-                Log.e("ERROR", response.message)
             } else {
                 DialogHelper.showSuccessDialog(
                     this,
@@ -53,9 +54,9 @@ class SignUpActivity : AppCompatActivity() {
 
         viewModel.loading.observe(this) { loading ->
             if (loading) {
-                loadingDialog.show()
+               showLoadingDialog()
             } else {
-                loadingDialog.dismiss()
+                dismissLoadingDialog()
             }
         }
 
@@ -94,5 +95,21 @@ class SignUpActivity : AppCompatActivity() {
                 login
             )
         }.start()
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = DialogHelper.showLoadingDialog(this)
+        } else if (!loadingDialog!!.isShowing) {
+            loadingDialog!!.show()
+        }
+    }
+
+    private fun dismissLoadingDialog() {
+        loadingDialog?.let {
+            if (it.isShowing) {
+                it.dismissWithAnimation()
+            }
+        }
     }
 }
