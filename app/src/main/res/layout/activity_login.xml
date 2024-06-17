@@ -54,6 +54,7 @@
         <com.example.storyapp.ui.component.CustomEditTextEmail
             android:id="@+id/et_email_address"
             android:layout_width="match_parent"
+            android:fontFamily="@font/poppinsregular"
             android:layout_height="60dp"
             android:background="@drawable/custom_input"
             android:hint="@string/enter_your_email"
@@ -100,6 +101,7 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:fontFamily="@font/poppinsregular"
             android:background="@drawable/custom_input"
             android:hint="@string/enter_your_password"
             android:importantForAutofill="no"
