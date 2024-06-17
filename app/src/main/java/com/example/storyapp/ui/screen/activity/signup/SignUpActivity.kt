@@ -2,6 +2,7 @@ package com.example.storyapp.ui.screen.activity.signup
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -15,11 +16,14 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.databinding.ActivitySignUpBinding
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
+import com.example.storyapp.ui.screen.activity.login.LoginActivity
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySignUpBinding
     private var loadingDialog: SweetAlertDialog? = null
+    private lateinit var factory: ViewModelFactory
+    private val viewModel by viewModels<SignUpViewModel> {factory}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).apply {
-            setTitleText("Please wait...")
-            progressHelper.barColor = Color.parseColor("#899BEA")
-        }
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
-        val viewModel: SignUpViewModel by viewModels { factory }
+        factory = ViewModelFactory.getInstance(this)
 
 
         viewModel.registerResponse.observe(this) { response ->
@@ -58,6 +57,21 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 dismissLoadingDialog()
             }
+        }
+
+
+        setUpAction()
+        playAnimation()
+    }
+
+    private fun setUpAction() {
+        binding.tvLogin.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@SignUpActivity,
+                    LoginActivity::class.java
+                )
+            )
         }
 
         binding.btnCreateAccount.setOnClickListener {
@@ -96,9 +110,6 @@ class SignUpActivity : AppCompatActivity() {
                 viewModel.register(username, email, password)
             }
         }
-
-
-        playAnimation()
     }
 
     private fun playAnimation() {
