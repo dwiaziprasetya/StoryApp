@@ -22,8 +22,15 @@ object DialogHelper {
         context: Context,
         title: String?,
         textContent: String?,
+        navigateTo: () -> Unit = {}
     ) {
-        showDialog(context, title, textContent, SweetAlertDialog.SUCCESS_TYPE)
+        showDialog(
+            context,
+            title,
+            textContent,
+            SweetAlertDialog.SUCCESS_TYPE,
+            navigateTo
+        )
     }
 
 
@@ -49,8 +56,15 @@ object DialogHelper {
         context: Context,
         title: String?,
         textContent: String?,
+        navigateTo: () -> Unit = {}
     ) {
-        showDialog(context, title, textContent, SweetAlertDialog.ERROR_TYPE)
+        showDialog(
+            context,
+            title,
+            textContent,
+            SweetAlertDialog.ERROR_TYPE,
+            navigateTo
+        )
     }
 
 
@@ -59,12 +73,17 @@ object DialogHelper {
         title: String?,
         textContent: String?,
         alertType: Int,
+        navigateTo: () -> Unit = {}
     ) {
         val customFont = getCustomFont(context)
 
         val dialog = SweetAlertDialog(context, alertType)
             .setTitleText(title)
             .setContentText(textContent)
+            .setConfirmClickListener {
+                navigateTo()
+                it.dismissWithAnimation()
+            }
 
         dialog.show()
 
