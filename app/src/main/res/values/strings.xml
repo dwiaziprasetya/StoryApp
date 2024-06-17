@@ -17,4 +17,6 @@
     <string name="logo">logo</string>
     <string name="selamat_datang_di_soccer_story">Selamat datang di Soccer Story!</string>
     <string name="description_app">Ingin berbagi cerita dan ilmu tentang dunia sepak bola? Mulai dari berita terbaru, tips dan trik, analisis pertandingan, hingga sejarah dan perkembangan klub favoritmu. Semuanya ada di Soccer Story!</string>
+    <string name="hallo_user">Hallo</string>
+    <string name="logout">Logout</string>
 </resources>

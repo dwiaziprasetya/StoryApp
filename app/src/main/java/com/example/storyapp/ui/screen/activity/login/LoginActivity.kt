@@ -1,27 +1,25 @@
 package com.example.storyapp.ui.screen.activity.login
 
+import SessionPreferences
+import SessionViewModelFactory
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityLoginBinding
-import com.example.storyapp.databinding.ActivitySignUpBinding
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
-import com.example.storyapp.ui.screen.activity.MainActivity
+import com.example.storyapp.ui.screen.activity.main.MainActivity
+import com.example.storyapp.ui.screen.activity.main.MainViewModel
 import com.example.storyapp.ui.screen.activity.signup.SignUpActivity
-import com.example.storyapp.ui.screen.activity.signup.SignUpViewModel
+import dataStore
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -29,12 +27,20 @@ class LoginActivity : AppCompatActivity() {
     private var loadingDialog: SweetAlertDialog? = null
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<LoginViewModel> {factory}
+    private lateinit var sessionViewModel : MainViewModel
+    private lateinit var pref : SessionPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        pref = SessionPreferences.getInstance(application.dataStore)
+        sessionViewModel = ViewModelProvider(
+            this,
+            SessionViewModelFactory(pref)
+        )[MainViewModel::class.java]
 
         factory = ViewModelFactory.getInstance(this)
 
@@ -60,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                         )
                     }
                 )
+                sessionViewModel.saveLoginData(response)
             }
         }
 
