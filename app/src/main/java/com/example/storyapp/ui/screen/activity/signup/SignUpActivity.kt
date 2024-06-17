@@ -65,10 +65,38 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.etEmailAddress.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
+            if (username.isEmpty()) {
+                DialogHelper.showErrorDialog(
+                    this,
+                    "Username is required",
+                    "Please enter your username"
+                )
+                return@setOnClickListener
+            }
+
+            if (email.isEmpty()) {
+                DialogHelper.showErrorDialog(
+                    this,
+                    "Email is required",
+                    "Please enter your email"
+                )
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()) {
+                DialogHelper.showErrorDialog(
+                    this,
+                    "Password is required",
+                    "Please enter your password"
+                )
+                return@setOnClickListener
+            }
+
             lifecycleScope.launch {
                 viewModel.register(username, email, password)
             }
         }
+
 
         playAnimation()
     }

@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username">
 
-        <com.example.storyapp.ui.component.CustomEditTextEmail
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -90,12 +90,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email_address">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.storyapp.ui.component.CustomEditTextEmail
             android:id="@+id/et_email_address"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/custom_input"
-            android:hint="@string/enter_your_password"
+            android:hint="@string/enter_your_email"
             android:importantForAutofill="no"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
