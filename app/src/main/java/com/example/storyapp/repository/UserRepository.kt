@@ -1,12 +1,22 @@
 package com.example.storyapp.repository
 
+import com.example.storyapp.data.remote.response.FileUploadResponse
 import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.RegisterResponse
 import com.example.storyapp.data.remote.retrofit.ApiService
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class UserRepository private constructor(
     private val apiService : ApiService
 ){
+
+    suspend fun uploadImage(
+        file: MultipartBody.Part,
+        description: RequestBody
+    ) : FileUploadResponse {
+        return apiService.addStory(file, description)
+    }
 
     suspend fun register(
         username: String,

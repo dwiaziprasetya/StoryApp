@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.di.Injection
 import com.example.storyapp.repository.UserRepository
+import com.example.storyapp.ui.screen.activity.addstory.AddStoryViewModel
 import com.example.storyapp.ui.screen.activity.login.LoginViewModel
 import com.example.storyapp.ui.screen.activity.signup.SignUpViewModel
 
@@ -17,6 +18,8 @@ class ViewModelFactory private constructor(
             return SignUpViewModel(userRepository) as T
         } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(userRepository) as T
+        } else if (modelClass.isAssignableFrom(AddStoryViewModel::class.java)) {
+            return AddStoryViewModel(userRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

@@ -79,6 +79,7 @@ object DialogHelper {
 
         val dialog = SweetAlertDialog(context, alertType)
             .setTitleText(title)
+            .setConfirmText("OK")
             .setContentText(textContent)
             .setConfirmClickListener {
                 navigateTo()

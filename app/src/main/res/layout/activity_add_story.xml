@@ -1,155 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:background="?attr/colorOnPrimary"
     android:layout_height="match_parent"
+    tools:ignore="Overdraw"
     tools:context=".ui.screen.activity.addstory.AddStoryActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/previewImageView"
-        android:layout_width="0dp"
-        android:layout_height="280dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_place_holder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/roundedImageView"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
-
-
-    <Button
-        android:id="@+id/btn_camera"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/camera"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_gallery"
-        app:layout_constraintTop_toBottomOf="@+id/previewImageView"
-        tools:ignore="TextContrastCheck,VisualLintButtonSize" />
-
-    <Button
-        android:id="@+id/btn_gallery"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_button"
-        android:elevation="2dp"
-        android:fontFamily="@font/poppinsmedium"
-        android:scaleType="fitCenter"
-        android:text="@string/galeri"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_camera"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/previewImageView"
-        tools:ignore="TextContrastCheck,VisualLintButtonSize" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/title"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_gallery"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_gallery"
-        app:layout_constraintTop_toBottomOf="@id/btn_gallery" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_title"
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="?attr/colorOnPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_profile"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/custom_input"
-            android:fontFamily="@font/poppinsregular"
-            android:gravity="top|start"
-            android:hint="@string/enter_your_title_story"
-            android:inputType="textMultiLine"
-            android:overScrollMode="always"
-            android:scrollbars="vertical"
-            android:textSize="14sp"
-            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+            app:navigationIcon="@drawable/ic_arrow_back"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:titleCentered="true"
+            android:fitsSystemWindows="true"
+            app:titleTextAppearance="@style/toolbar_text"
+            app:title="Add Story"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/description"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/et_title"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/et_title"
-        app:layout_constraintTop_toBottomOf="@+id/et_title" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_description"
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_description">
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/custom_input"
-            android:fontFamily="@font/poppinsregular"
-            android:gravity="top|start"
-            android:hint="@string/enter_your_story_description"
-            android:inputType="textMultiLine"
-            android:overScrollMode="always"
-            android:scrollbars="vertical"
-            android:textSize="14sp"
-            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+            android:layout_height="match_parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/previewImageView"
+                android:layout_width="0dp"
+                android:layout_height="280dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_place_holder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
-    <Button
-        android:id="@+id/uploadButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/upload"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_camera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="@string/camera"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_gallery"
+                app:layout_constraintTop_toBottomOf="@+id/previewImageView"
+                tools:ignore="TextContrastCheck,VisualLintButtonSize" />
+
+            <Button
+                android:id="@+id/btn_gallery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_button"
+                android:elevation="2dp"
+                android:fontFamily="@font/poppinsmedium"
+                android:scaleType="fitCenter"
+                android:text="@string/galeri"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_camera"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/previewImageView"
+                tools:ignore="TextContrastCheck,VisualLintButtonSize" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="@string/description"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_gallery"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_gallery"
+                app:layout_constraintTop_toBottomOf="@+id/btn_gallery" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/uploadButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                app:layout_constraintVertical_bias="0.0">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_description_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/poppinsregular"
+                    android:gravity="top|start"
+                    android:hint="@string/enter_your_story_description"
+                    android:inputType="textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/uploadButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="@string/upload"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck,VisualLintButtonSize" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
