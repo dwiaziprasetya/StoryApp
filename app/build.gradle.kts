@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.makeramen.roundedimageview)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.library)
     implementation(libs.lifecycle.livedata.ktx)
