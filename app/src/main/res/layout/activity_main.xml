@@ -11,6 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:liftOnScrollColor="?attr/colorOnPrimary"
         android:background="?attr/colorOnPrimary">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -43,5 +44,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:backgroundTint="?attr/colorPrimary"
+        app:tint="?attr/colorOnPrimary"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_add"
+        app:layout_anchorGravity="center|bottom"
+        tools:ignore="ContentDescription,HardcodedText" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

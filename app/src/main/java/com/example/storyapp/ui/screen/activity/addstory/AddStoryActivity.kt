@@ -136,6 +136,10 @@ class AddStoryActivity : AppCompatActivity() {
                         this,
                         "Success",
                         "Upload Successful",
+                        navigateTo = {
+                            finish()
+                            recreate()
+                        }
                     )
                 }
             }

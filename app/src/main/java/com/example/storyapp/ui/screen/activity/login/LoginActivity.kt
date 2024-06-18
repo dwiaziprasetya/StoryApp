@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.databinding.ActivityLoginBinding
+import com.example.storyapp.di.Injection
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.screen.activity.addstory.AddStoryActivity
@@ -37,10 +38,11 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val repository = Injection.provideRepository(this)
         pref = SessionPreferences.getInstance(application.dataStore)
         sessionViewModel = ViewModelProvider(
             this,
-            SessionViewModelFactory(pref)
+            SessionViewModelFactory(pref, repository)
         )[MainViewModel::class.java]
 
         factory = ViewModelFactory.getInstance(this)
