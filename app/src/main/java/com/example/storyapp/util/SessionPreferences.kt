@@ -58,7 +58,7 @@ class SessionPreferences private constructor(
 
     fun getName(): Flow<String?> {
         return dataStore.data.map { preferences ->
-            preferences[KEY_NAME]
+            preferences[KEY_TOKEN]
         }
     }
 }

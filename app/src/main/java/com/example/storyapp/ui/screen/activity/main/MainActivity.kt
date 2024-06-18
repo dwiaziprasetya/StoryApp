@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityMainBinding
+import com.example.storyapp.ui.screen.activity.addstory.AddStoryActivity
 import com.example.storyapp.ui.screen.activity.welcome.WelcomeActivity
 import dataStore
 import kotlinx.coroutines.flow.observeOn
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
+        }
+
+        binding.btnAddStory.setOnClickListener {
+            startActivity(Intent(this, AddStoryActivity::class.java))
         }
 
         binding.btnLogout.setOnClickListener {

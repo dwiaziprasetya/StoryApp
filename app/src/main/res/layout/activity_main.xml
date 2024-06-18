@@ -35,4 +35,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_welcome_user" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_story"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/holo_blue_dark"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Add Story"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btn_logout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_logout"
+        app:layout_constraintTop_toBottomOf="@+id/btn_logout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

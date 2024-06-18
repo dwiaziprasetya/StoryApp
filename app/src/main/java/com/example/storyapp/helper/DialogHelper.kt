@@ -43,6 +43,7 @@ object DialogHelper {
             setTitleText("Please wait")
             progressHelper.barColor = ContextCompat.getColor(context, R.color.purpleOcean)
             show()
+            setCancelable(true)
 
             val titleText = findViewById<TextView>(cn.pedant.SweetAlert.R.id.title_text)
             val contentText = findViewById<TextView>(cn.pedant.SweetAlert.R.id.content_text)
@@ -66,7 +67,6 @@ object DialogHelper {
             navigateTo
         )
     }
-
 
     private fun showDialog(
         context: Context,

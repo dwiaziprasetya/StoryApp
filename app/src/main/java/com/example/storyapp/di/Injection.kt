@@ -1,6 +1,7 @@
     package com.example.storyapp.di
 
     import android.content.Context
+    import android.util.Log
     import com.example.storyapp.data.remote.retrofit.ApiConfig
     import com.example.storyapp.repository.UserRepository
     import dataStore
@@ -10,8 +11,13 @@
     object Injection {
         fun provideRepository(context: Context): UserRepository {
             val pref = SessionPreferences.getInstance(context.dataStore)
+
             val user = runBlocking { pref.getSession().first() }
-            val apiService = ApiConfig.getApiService(user.token)
+            val token = user.token
+
+            Log.d("Injection", "Token: $token")
+
+            val apiService = ApiConfig.getApiService(token)
             return UserRepository.getInstance(apiService)
         }
 

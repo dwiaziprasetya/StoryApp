@@ -36,7 +36,7 @@ interface ApiService {
     ) : LoginResponse
 
     @Multipart
-    @POST("stories/guest")
+    @POST("stories")
     suspend fun addStory(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody
