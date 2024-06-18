@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,46 +8,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.screen.activity.main.MainActivity">
 
-
-    <TextView
-        android:id="@+id/tv_welcome_user"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/hallo_user"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="?attr/colorOnPrimary">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_logout"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#E72929"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/logout"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_welcome_user" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tlbr_list_story"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextAppearance="@style/toolbar_text"
+            app:title="Soccer Story"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_add_story"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@android:color/holo_blue_dark"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="Add Story"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/btn_logout"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_logout"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorOnPrimary"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_story_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_story">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

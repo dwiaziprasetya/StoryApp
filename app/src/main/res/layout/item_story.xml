@@ -1,44 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:background="#F4F7FC"
-    android:layout_margin="8.dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/previewImageView"
-        android:layout_width="0dp"
-        android:layout_height="280dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/anthony_matheus_mantap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/story_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/poppinssemibold"
-        android:text="@string/story_title"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/previewImageView"
-        app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
-
-    <TextView
-        android:id="@+id/textView3"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:maxLines="3"
-        android:fontFamily="@font/poppinsregular"
-        android:justificationMode="inter_word"
-        android:text="@string/story_desc"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/story_title"
-        tools:ignore="UnusedAttribute,VisualLintLongText" />
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/previewImageView"
+            android:layout_width="0dp"
+            android:layout_height="280dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/anthony_matheus_mantap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/story_username"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/previewImageView"
+            app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppinsregular"
+            android:justificationMode="inter_word"
+            android:maxLines="3"
+            android:text="@string/story_desc"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:ignore="UnusedAttribute,VisualLintLongText"
+            tools:layout_editor_absoluteX="10dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

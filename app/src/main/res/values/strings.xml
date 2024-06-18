@@ -23,7 +23,7 @@
     <string name="story_desc">
         Antony Matheus dos Santos (born 24 February 2000), simply known as Antony is a Brazilian professional footballer who plays as a right winger for Premier League club Manchester United and the Brazil national team.
     </string>
-    <string name="story_title">Anthony Matheus</string>
+    <string name="story_username">Anthony Matheus</string>
     <string name="description">Description</string>
     <string name="enter_your_story_description">Enter your description story</string>
     <string name="enter_your_title_story">Enter your title story</string>
@@ -31,4 +31,5 @@
     <string name="title">Title</string>
     <string name="upload">UPLOAD</string>
     <string name="camera">Camera</string>
+    <string name="item_story">item story</string>
 </resources>

@@ -39,18 +39,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnAddStory.setOnClickListener {
-            startActivity(Intent(this, AddStoryActivity::class.java))
-        }
-
-        binding.btnLogout.setOnClickListener {
-            viewModel.logout()
-        }
-
-        lifecycleScope.launch {
-            viewModel.getName().collect { name ->
-                binding.tvWelcomeUser.text = "Hello $name"
-            }
-        }
+//        binding.btnAddStory.setOnClickListener {
+//            startActivity(Intent(this, AddStoryActivity::class.java))
+//        }
+//
+//        binding.btnLogout.setOnClickListener {
+//            viewModel.logout()
+//        }
+//
+//        lifecycleScope.launch {
+//            viewModel.getName().collect { name ->
+//                binding.tvWelcomeUser.text = "Hello $name"
+//            }
+//        }
     }
 }
