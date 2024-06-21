@@ -1,5 +1,6 @@
 package com.example.storyapp.ui.screen.activity.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,6 +44,12 @@ class LoginViewModel (
                 _isLoading.value = false
             }
         }
+    }
 
+    fun saveLoginData(loginResponse: LoginResult) {
+        viewModelScope.launch {
+            userRepository.saveLoginData(loginResponse)
+            Log.d("woi anjir", "Token saved: ${loginResponse.token}")
+        }
     }
 }

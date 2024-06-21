@@ -1,75 +1,59 @@
 package com.example.storyapp.ui.screen.activity.main
 
-import SessionPreferences
+import com.example.storyapp.util.SessionPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.storyapp.data.remote.response.ListStoryItem
-import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.LoginResult
 import com.example.storyapp.data.remote.response.StoryResponse
 import com.example.storyapp.repository.UserRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val pref: SessionPreferences,
     private val repository: UserRepository
 ) : ViewModel() {
 
     private val _stories = MutableLiveData<StoryResponse>()
-    val stories: LiveData<StoryResponse> get() = _stories
+    val stories: LiveData<StoryResponse> = _stories
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     init {
-        viewModelScope.launch {
-            getStories()
-        }
+        getStories()
     }
 
-    private suspend fun getStories() {
+    fun getStories() {
+        Log.d("MainViewModel!!!!!!!!!!!!!!!!!!!!!!!!", "getStories called")
         viewModelScope.launch {
             _isLoading.value = true
             try {
+                Log.d("MainViewModel!!!!!!!!!!!!!!!!!!!!!!!!", "try called")
                 val story = repository.getStories()
                 _stories.value = story
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.d("MainViewModel!!!!!!!!!!!!!!!!!!!!!!!!", "catch called")
+                _stories.value = StoryResponse(
+                    error = true,
+                    message = e.message.toString(),
+                    listStory = emptyList()
+                )
             } finally {
                 _isLoading.value = false
             }
         }
     }
 
-    fun saveLoginData(loginResponse: LoginResponse) {
-        viewModelScope.launch {
-            pref.saveLoginData(loginResponse)
-        }
-    }
-
-
-
-//    fun getStories() {
-//        viewModelScope.launch {
-//            repository.getStories()
-//        }
-//    }
-
     fun logout() {
         viewModelScope.launch {
-            pref.logout()
+            repository.logout()
         }
     }
 
     fun getSession(): LiveData<LoginResult> {
-        return pref.getSession().asLiveData()
-    }
-
-    fun getName(): Flow<String?> {
-        return pref.getName()
+        return repository.getSession().asLiveData()
     }
 }

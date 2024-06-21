@@ -1,27 +1,22 @@
 package com.example.storyapp.ui.screen.activity.login
 
-import SessionPreferences
-import SessionViewModelFactory
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.example.storyapp.data.remote.response.LoginResult
 import com.example.storyapp.databinding.ActivityLoginBinding
-import com.example.storyapp.di.Injection
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
-import com.example.storyapp.ui.screen.activity.addstory.AddStoryActivity
 import com.example.storyapp.ui.screen.activity.main.MainActivity
-import com.example.storyapp.ui.screen.activity.main.MainViewModel
 import com.example.storyapp.ui.screen.activity.signup.SignUpActivity
-import dataStore
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -29,21 +24,12 @@ class LoginActivity : AppCompatActivity() {
     private var loadingDialog: SweetAlertDialog? = null
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<LoginViewModel> {factory}
-    private lateinit var sessionViewModel : MainViewModel
-    private lateinit var pref : SessionPreferences
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val repository = Injection.provideRepository(this)
-        pref = SessionPreferences.getInstance(application.dataStore)
-        sessionViewModel = ViewModelProvider(
-            this,
-            SessionViewModelFactory(pref, repository)
-        )[MainViewModel::class.java]
+        setUpAction()
 
         factory = ViewModelFactory.getInstance(this)
 
@@ -56,22 +42,31 @@ class LoginActivity : AppCompatActivity() {
                 )
                 Toast.makeText(this, "Registration failed: ${response.message}", Toast.LENGTH_SHORT).show()
             } else {
+                viewModel.saveLoginData(
+                    LoginResult(
+                        response.loginResult.name,
+                        response.loginResult.userId,
+                        response.loginResult.token
+                    )
+                ).also {
+                    Log.d("LoginActivity", "Data disimpan: ${response.loginResult.token}")
+                }
+
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                 DialogHelper.showSuccessDialog(
                     this,
-                    "Success",
-                    "Login Successful",
+                    "Login Success",
+                    "Welcome ${response.loginResult.name}",
                     navigateTo = {
-                        startActivity(
-                            Intent(
-                                this@LoginActivity,
-                                MainActivity::class.java
-                            )
-                        )
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
                     }
                 )
-                sessionViewModel.saveLoginData(response)
             }
         }
+
 
         viewModel.loading.observe(this) { loading ->
             if (loading) {
@@ -81,9 +76,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        setUpAction()
-
         playAnimation()
+    }
+
+    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 
     private fun setUpAction() {

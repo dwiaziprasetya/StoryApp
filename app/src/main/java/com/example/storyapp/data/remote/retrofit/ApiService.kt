@@ -17,6 +17,11 @@ import retrofit2.http.Path
 
 interface ApiService {
 
+    @GET("stories/{id}")
+    suspend fun getDetailStory(
+        @Path("id") id: String
+    ) : StoryResponse
+
     @GET("stories")
     suspend fun getStories() : StoryResponse
 

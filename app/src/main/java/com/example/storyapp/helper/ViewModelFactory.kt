@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.di.Injection
 import com.example.storyapp.repository.UserRepository
 import com.example.storyapp.ui.screen.activity.addstory.AddStoryViewModel
+import com.example.storyapp.ui.screen.activity.detail.DetailViewModel
 import com.example.storyapp.ui.screen.activity.login.LoginViewModel
+import com.example.storyapp.ui.screen.activity.main.MainViewModel
 import com.example.storyapp.ui.screen.activity.signup.SignUpViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
@@ -20,16 +22,13 @@ class ViewModelFactory private constructor(
             return LoginViewModel(userRepository) as T
         } else if (modelClass.isAssignableFrom(AddStoryViewModel::class.java)) {
             return AddStoryViewModel(userRepository) as T
+        } else if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            return MainViewModel(userRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 
     companion object {
-        @Volatile
-        private var instance: ViewModelFactory? = null
-        fun getInstance(context: Context) : ViewModelFactory =
-            instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository(context))
-            }.also { instance = it }
+        fun getInstance(context: Context) = ViewModelFactory(Injection.provideRepository(context))
     }
 }

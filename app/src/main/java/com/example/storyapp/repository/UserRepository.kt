@@ -1,18 +1,38 @@
 package com.example.storyapp.repository
 
+import com.example.storyapp.util.SessionPreferences
 import com.example.storyapp.data.remote.response.FileUploadResponse
 import com.example.storyapp.data.remote.response.LoginResponse
+import com.example.storyapp.data.remote.response.LoginResult
 import com.example.storyapp.data.remote.response.RegisterResponse
 import com.example.storyapp.data.remote.response.StoryResponse
 import com.example.storyapp.data.remote.retrofit.ApiService
+import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class UserRepository private constructor(
-    private val apiService : ApiService
+    private val apiService : ApiService,
+    private val pref: SessionPreferences
 ){
 
-    suspend fun getStories() : StoryResponse {
+    fun getSession() : Flow<LoginResult> {
+        return pref.getSession()
+    }
+
+    suspend fun logout() {
+        pref.logout()
+    }
+
+    suspend fun saveLoginData(loginResponse: LoginResult) {
+        pref.saveLoginData(loginResponse)
+    }
+
+    suspend fun getDetailStory(id: String) : StoryResponse {
+        return apiService.getDetailStory(id)
+    }
+
+    suspend fun getStories(): StoryResponse {
         return apiService.getStories()
     }
 
@@ -39,16 +59,12 @@ class UserRepository private constructor(
     }
 
     companion object {
-        @Volatile
-        private var instance : UserRepository? = null
         fun getInstance(
+            userPreference: SessionPreferences,
             apiService: ApiService
-        ) : UserRepository =
-            instance ?: synchronized(this) {
-                instance ?: UserRepository(apiService)
-            }.also {
-                instance = it
-            }
+        ) = UserRepository(
+            apiService,
+            userPreference
+        )
     }
-
 }

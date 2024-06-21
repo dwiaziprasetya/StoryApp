@@ -1,5 +1,6 @@
 package com.example.storyapp.data.remote.retrofit
 
+import android.util.Log
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -20,6 +21,7 @@ object ApiConfig {
             val requestHeaders = req.newBuilder()
                 .addHeader("Authorization", "Bearer $token")
                 .build()
+            Log.d("ApiConfig", "Request: ${req.url} dengan header Authorization: Bearer $token")
             chain.proceed(requestHeaders)
         }
         val client = OkHttpClient.Builder()

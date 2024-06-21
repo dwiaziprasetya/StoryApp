@@ -17,6 +17,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tlbr_list_story"
             android:layout_width="match_parent"
+            app:menu="@menu/main_menu"
             android:layout_height="wrap_content"
             app:titleTextAppearance="@style/toolbar_text"
             app:title="Soccer Story"/>

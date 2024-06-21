@@ -1,10 +1,12 @@
+package com.example.storyapp.util
+
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.LoginResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -14,6 +16,34 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class SessionPreferences private constructor(
     private val dataStore: DataStore<Preferences>
 ) {
+
+    suspend fun saveLoginData(loginResponse: LoginResult) {
+        dataStore.edit { preferences ->
+            preferences[KEY_NAME] = loginResponse.name
+            preferences[PREF_USER_ID] = loginResponse.userId
+            preferences[KEY_TOKEN] = loginResponse.token
+            Log.d("com.example.storyapp.util.SessionPreferences", "Token disimpan: ${loginResponse.token}")
+        }
+    }
+
+    fun getSession(): Flow<LoginResult> {
+        return dataStore.data.map { preference ->
+            val token = preference[KEY_TOKEN] ?: ""
+            Log.d("com.example.storyapp.util.SessionPreferences", "Token diambil: $token")
+            LoginResult(
+                preference[KEY_NAME] ?: "",
+                preference[PREF_USER_ID] ?: "",
+                token
+            )
+
+        }
+    }
+
+    suspend fun logout() {
+        dataStore.edit { preferences ->
+            preferences.clear()
+        }
+    }
 
     companion object {
         @Volatile
@@ -29,36 +59,6 @@ class SessionPreferences private constructor(
                 INSTANCE = instance
                 instance
             }
-        }
-    }
-
-    fun getSession(): Flow<LoginResult> {
-        return dataStore.data.map { preference ->
-            LoginResult(
-                preference[KEY_NAME] ?: "",
-                preference[PREF_USER_ID] ?: "",
-                preference[KEY_TOKEN] ?: ""
-            )
-        }
-    }
-
-    suspend fun logout() {
-        dataStore.edit { preferences ->
-            preferences.clear()
-        }
-    }
-
-    suspend fun saveLoginData(loginResponse: LoginResponse) {
-        dataStore.edit { preferences ->
-            preferences[KEY_NAME] = loginResponse.loginResult.name
-            preferences[PREF_USER_ID] = loginResponse.loginResult.userId
-            preferences[KEY_TOKEN] = loginResponse.loginResult.token
-        }
-    }
-
-    fun getName(): Flow<String?> {
-        return dataStore.data.map { preferences ->
-            preferences[KEY_TOKEN]
         }
     }
 }

@@ -10,6 +10,9 @@ import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.databinding.ItemStoryBinding
 
 class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+
+    private lateinit var onItemCalback : OnItemCallback
+
     class MyViewHolder(private val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: ListStoryItem) {
             binding.tvDescription.text = story.description
@@ -28,6 +31,9 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val story = getItem(position)
         holder.bind(story)
+        holder.itemView.setOnClickListener {
+            onItemCalback.onItemClicked(story)
+        }
     }
 
     companion object {
@@ -44,5 +50,13 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_
             }
 
         }
+    }
+
+    fun setOnItemClickCallback(onItemCallback: OnItemCallback) {
+        this.onItemCalback = onItemCallback
+    }
+
+    interface OnItemCallback {
+        fun onItemClicked(story: ListStoryItem)
     }
 }
