@@ -1,6 +1,8 @@
 package com.example.storyapp.data.remote.retrofit
 
+import com.example.storyapp.data.remote.response.DetailStoryResponse
 import com.example.storyapp.data.remote.response.FileUploadResponse
+import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.RegisterResponse
 import com.example.storyapp.data.remote.response.StoryResponse
@@ -20,7 +22,7 @@ interface ApiService {
     @GET("stories/{id}")
     suspend fun getDetailStory(
         @Path("id") id: String
-    ) : StoryResponse
+    ) : DetailStoryResponse
 
     @GET("stories")
     suspend fun getStories() : StoryResponse

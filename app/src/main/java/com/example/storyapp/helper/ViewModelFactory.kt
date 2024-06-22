@@ -14,6 +14,7 @@ import com.example.storyapp.ui.screen.activity.signup.SignUpViewModel
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(
     private val userRepository: UserRepository,
+    private val id: String = ""
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
@@ -24,11 +25,13 @@ class ViewModelFactory private constructor(
             return AddStoryViewModel(userRepository) as T
         } else if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             return MainViewModel(userRepository) as T
+        } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            return DetailViewModel(userRepository, id) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 
     companion object {
-        fun getInstance(context: Context) = ViewModelFactory(Injection.provideRepository(context))
+        fun getInstance(context: Context, id: String = "") = ViewModelFactory(Injection.provideRepository(context), id)
     }
 }

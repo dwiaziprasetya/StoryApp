@@ -48,10 +48,12 @@ class SignUpActivity : AppCompatActivity() {
                     "Success",
                     "Account has been created"
                 )
+                Toast.makeText(this, "Account has been created please login", Toast.LENGTH_SHORT).show()
             }
         }
 
         viewModel.loading.observe(this) { loading ->
+            loadingDialog?.setCanceledOnTouchOutside(true)
             if (loading) {
                showLoadingDialog()
             } else {

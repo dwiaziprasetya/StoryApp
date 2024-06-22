@@ -27,7 +27,6 @@ class MainViewModel(
     }
 
     fun getStories() {
-        Log.d("MainViewModel!!!!!!!!!!!!!!!!!!!!!!!!", "getStories called")
         viewModelScope.launch {
             _isLoading.value = true
             try {

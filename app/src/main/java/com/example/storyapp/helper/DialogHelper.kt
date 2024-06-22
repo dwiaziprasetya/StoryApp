@@ -86,6 +86,8 @@ object DialogHelper {
                 it.dismissWithAnimation()
             }
 
+        dialog.setCanceledOnTouchOutside(true)
+
         dialog.show()
 
         val titleText = dialog.findViewById<TextView>(cn.pedant.SweetAlert.R.id.title_text)

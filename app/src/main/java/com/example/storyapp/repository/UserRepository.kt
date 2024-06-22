@@ -1,7 +1,9 @@
 package com.example.storyapp.repository
 
+import com.example.storyapp.data.remote.response.DetailStoryResponse
 import com.example.storyapp.util.SessionPreferences
 import com.example.storyapp.data.remote.response.FileUploadResponse
+import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.LoginResult
 import com.example.storyapp.data.remote.response.RegisterResponse
@@ -28,7 +30,7 @@ class UserRepository private constructor(
         pref.saveLoginData(loginResponse)
     }
 
-    suspend fun getDetailStory(id: String) : StoryResponse {
+    suspend fun getDetailStory(id: String) : DetailStoryResponse {
         return apiService.getDetailStory(id)
     }
 

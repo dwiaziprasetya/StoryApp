@@ -10,12 +10,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.R
+import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.adapter.StoryAdapter
 import com.example.storyapp.ui.screen.activity.addstory.AddStoryActivity
+import com.example.storyapp.ui.screen.activity.detail.DetailActivity
 import com.example.storyapp.ui.screen.activity.login.LoginActivity
+import com.example.storyapp.ui.screen.activity.welcome.WelcomeActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -39,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             val token = it.token
             Log.d("MainActivity", "Token dari session: $token")
             if (it.name == "") {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
             }
@@ -64,6 +67,14 @@ class MainActivity : AppCompatActivity() {
             adapter = storyAdapter
         }
 
+        storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemCallback {
+            override fun onItemClicked(story: ListStoryItem) {
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra("id", story.id)
+                startActivity(intent)
+            }
+
+        })
 
         binding.fabAddStory.setOnClickListener {
             startActivity(Intent(this, AddStoryActivity::class.java))
