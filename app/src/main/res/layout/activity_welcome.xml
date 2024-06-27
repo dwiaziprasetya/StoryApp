@@ -8,76 +8,69 @@
     tools:context=".ui.screen.activity.welcome.WelcomeActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:id="@+id/iv_welcome"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:contentDescription="@string/logo"
-        android:src="@drawable/logo"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:src="@drawable/selfie_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,HardcodedText" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@drawable/gradien_background"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_welcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:fontFamily="@font/poppinsblack"
-        android:text="@string/selamat_datang_di_soccer_story"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_welcome_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="30dp"
-        android:fontFamily="@font/poppinsmedium"
-        android:justificationMode="inter_word"
-        android:text="@string/description_app"
-        android:textAlignment="gravity"
+        android:layout_marginHorizontal="30dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Share your Moments With Others"
+        android:textAlignment="center"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="UnusedAttribute" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_welcome"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsregular"
+        android:text="Capture, share, and relive your stories \nwith our vibrant and engaging community"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/tv_welcome_1"
+        app:layout_constraintStart_toStartOf="@+id/tv_welcome_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_welcome_1"
+        tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@id/btn_login"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:textSize="18sp"
+        android:id="@+id/btn_get_started"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/poppinsmedium"
-        android:text="@string/login"
-        android:textAllCaps="false"
+        android:text="Get Started"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/btn_sign_up"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sign_up"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/poppinsmedium"
-        android:text="@string/sign_up"
-        android:textColor="@color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="40dp"
+        tools:ignore="HardcodedText,VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

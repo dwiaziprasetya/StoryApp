@@ -1,7 +1,6 @@
 package com.example.storyapp.util
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -22,14 +21,12 @@ class SessionPreferences private constructor(
             preferences[KEY_NAME] = loginResponse.name
             preferences[PREF_USER_ID] = loginResponse.userId
             preferences[KEY_TOKEN] = loginResponse.token
-            Log.d("com.example.storyapp.util.SessionPreferences", "Token disimpan: ${loginResponse.token}")
         }
     }
 
     fun getSession(): Flow<LoginResult> {
         return dataStore.data.map { preference ->
             val token = preference[KEY_TOKEN] ?: ""
-            Log.d("com.example.storyapp.util.SessionPreferences", "Token diambil: $token")
             LoginResult(
                 preference[KEY_NAME] ?: "",
                 preference[PREF_USER_ID] ?: "",

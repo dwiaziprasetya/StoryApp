@@ -1,6 +1,7 @@
 [versions]
 agp = "8.5.0-rc01"
 awesomedialog = "2.0.5"
+coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.1"
 glide = "4.16.0"
 kotlin = "1.9.0"
@@ -22,6 +23,7 @@ roundedimageviewVersion = "2.3.0"
 
 [libraries]
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraxVersion" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }

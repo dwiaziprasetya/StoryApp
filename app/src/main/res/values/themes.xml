@@ -3,8 +3,8 @@
     <style name="Base.Theme.StoryApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purpleOcean</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="colorOnSecondary">@color/black</item>
     </style>
     <style name="Theme.StoryApp" parent="Base.Theme.StoryApp"/>
     <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -24,5 +24,8 @@
         <item name="android:fontFamily">@font/poppinsregular</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
+    </style>
+    <style name="MyActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
     </style>
 </resources>

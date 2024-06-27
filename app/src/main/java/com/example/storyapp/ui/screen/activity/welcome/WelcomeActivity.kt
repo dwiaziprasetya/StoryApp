@@ -2,7 +2,10 @@ package com.example.storyapp.ui.screen.activity.welcome
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.storyapp.databinding.ActivityWelcomeBinding
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.ui.screen.activity.login.LoginActivity
@@ -13,18 +16,19 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT
+            )
+        )
+
+
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupAction()
-    }
-
-    private fun setupAction() {
-        binding.btnLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
-        binding.btnSignUp.setOnClickListener {
+        binding.btnGetStarted.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
     }

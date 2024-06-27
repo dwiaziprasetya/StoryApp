@@ -12,15 +12,15 @@
         android:id="@+id/tv_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="120dp"
+        android:alpha="0"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/sign_up"
         android:textSize="40sp"
-        android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="100" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -51,14 +51,15 @@
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:fontFamily="@font/poppinsregular"
             android:background="@drawable/custom_input"
+            android:fontFamily="@font/poppinsregular"
             android:hint="@string/enter_your_username"
             android:importantForAutofill="no"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="TextFields" />
+            tools:ignore="TextFields,VisualLintTextFieldSize" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,14 +96,14 @@
             android:id="@+id/et_email_address"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:fontFamily="@font/poppinsregular"
             android:background="@drawable/custom_input"
+            android:fontFamily="@font/poppinsregular"
             android:hint="@string/enter_your_email"
             android:importantForAutofill="no"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="TextFields"/>
+            tools:ignore="TextFields,TextContrastCheck,VisualLintTextFieldSize" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,14 +143,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/custom_input"
+            android:fontFamily="@font/poppinsregular"
             android:hint="@string/enter_your_password"
             android:importantForAutofill="no"
-            android:fontFamily="@font/poppinsregular"
-            android:paddingStart="12dp"
             android:inputType="textPassword"
+            android:paddingStart="12dp"
             android:paddingEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="TextFields"/>
+            tools:ignore="TextFields,TextContrastCheck,VisualLintTextFieldSize" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,7 +169,8 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/et_password_layout"
         app:layout_constraintStart_toStartOf="@+id/et_password_layout"
-        app:layout_constraintTop_toBottomOf="@+id/et_password_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/et_password_layout"
+        tools:ignore="VisualLintButtonSize" />
 
     <TextView
         android:id="@+id/tv_already_have_account"
@@ -190,16 +192,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:clickable="true"
-        android:alpha="0"
-        tools:alpha="100"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="74dp"
+        android:alpha="0"
+        android:clickable="true"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tv_already_have_account"
-        app:layout_constraintTop_toBottomOf="@+id/btn_create_account" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_account"
+        tools:alpha="100"
+        tools:ignore="KeyboardInaccessibleWidget,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

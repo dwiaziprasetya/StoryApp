@@ -3,12 +3,10 @@ package com.example.storyapp.ui.screen.activity.camera
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -16,9 +14,7 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityCameraBinding
 import com.example.storyapp.util.createCustomTempFile
 
@@ -67,7 +63,6 @@ class CameraActivity : AppCompatActivity() {
                         "Gagal mengambil gambar.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.e("Camera Activity", "onError: ${exception.message}")
                 }
 
             }
@@ -101,7 +96,6 @@ class CameraActivity : AppCompatActivity() {
                     "Gagal memunculkan kamera.",
                     Toast.LENGTH_SHORT
                 ).show()
-                Log.e("Camera Activity", "startCamera: ${e.message}")
             }
         }, ContextCompat.getMainExecutor(this))
     }

@@ -10,6 +10,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
+        android:backgroundTint="?attr/colorPrimary"
         android:layout_height="wrap_content"
         app:liftOnScrollColor="?attr/colorOnPrimary"
         android:background="?attr/colorOnPrimary">
@@ -18,9 +19,12 @@
             android:id="@+id/tlbr_list_story"
             android:layout_width="match_parent"
             app:menu="@menu/main_menu"
+            app:titleTextColor="?attr/colorOnPrimary"
             android:layout_height="wrap_content"
+            android:theme="@style/MyActionBarTheme"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleTextAppearance="@style/toolbar_text"
-            app:title="Soccer Story"/>
+            app:title="Captive Story"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

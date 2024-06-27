@@ -1,6 +1,5 @@
 package com.example.storyapp.ui.screen.activity.signup
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,7 +29,6 @@ class SignUpViewModel(
                 val register = userRepository.register(username, email, password)
                 _isLoading.value = false
                 _registerResponse.value = register
-                Log.d("Woi", _isLoading.value.toString())
             } catch (e: Exception) {
                 _registerResponse.value = RegisterResponse(
                     error = true,
@@ -39,7 +37,6 @@ class SignUpViewModel(
                 )
             } finally {
                 _isLoading.value = false
-                Log.d("Woi", _isLoading.value.toString())
             }
         }
     }

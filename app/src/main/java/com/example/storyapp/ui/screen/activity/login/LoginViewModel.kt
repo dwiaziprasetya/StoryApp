@@ -49,7 +49,6 @@ class LoginViewModel (
     fun saveLoginData(loginResponse: LoginResult) {
         viewModelScope.launch {
             userRepository.saveLoginData(loginResponse)
-            Log.d("woi anjir", "Token saved: ${loginResponse.token}")
         }
     }
 }

@@ -3,10 +3,8 @@ package com.example.storyapp.ui.screen.activity.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.R
@@ -17,10 +15,7 @@ import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.adapter.StoryAdapter
 import com.example.storyapp.ui.screen.activity.addstory.AddStoryActivity
 import com.example.storyapp.ui.screen.activity.detail.DetailActivity
-import com.example.storyapp.ui.screen.activity.login.LoginActivity
 import com.example.storyapp.ui.screen.activity.welcome.WelcomeActivity
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private var loadingDialog: SweetAlertDialog? = null
@@ -34,13 +29,13 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
         viewModel.getSession().observe(this) {
-            val token = it.token
-            Log.d("MainActivity", "Token dari session: $token")
             if (it.name == "") {
                 val intent = Intent(this, WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -50,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.stories.observe(this) { response ->
             if (response.error) {
-                Log.e("Hei", response.message)
                 DialogHelper.showErrorDialog(
                     this,
                     "Stories Failed",
@@ -76,6 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+
         binding.fabAddStory.setOnClickListener {
             startActivity(Intent(this, AddStoryActivity::class.java))
         }
@@ -91,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
-            Log.d("Loading hey", isLoading.toString())
             loadingDialog?.setCanceledOnTouchOutside(true)
             if (isLoading) {
                 showLoadingDialog()

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -15,21 +14,17 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.example.storyapp.data.remote.response.FileUploadResponse
-import com.example.storyapp.data.remote.retrofit.ApiConfig
 import com.example.storyapp.databinding.ActivityAddStoryBinding
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.screen.activity.camera.CameraActivity
 import com.example.storyapp.ui.screen.activity.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.storyapp.util.uriToFile
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.HttpException
 
 class AddStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddStoryBinding
@@ -69,6 +64,10 @@ class AddStoryActivity : AppCompatActivity() {
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCamera() }
         binding.uploadButton.setOnClickListener { uploadImage() }
+        binding.tlbrAddStory.setNavigationOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
     }
 
     private fun startCamera() {
@@ -96,7 +95,7 @@ class AddStoryActivity : AppCompatActivity() {
             currentImageUri = uri
             showImage()
         } else {
-            Log.d("Photo Picker", "No media selected")
+            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -112,7 +111,6 @@ class AddStoryActivity : AppCompatActivity() {
     private fun uploadImage() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this)
-            Log.d("Image File", "showImage: ${imageFile.path}")
             val description = binding.etDescriptionInput.text.toString()
             showLoadingDialog()
 

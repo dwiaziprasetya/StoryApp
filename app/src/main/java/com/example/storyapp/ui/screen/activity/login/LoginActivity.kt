@@ -4,9 +4,10 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +27,12 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel by viewModels<LoginViewModel> {factory}
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT
+            )
+        )
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -48,9 +55,7 @@ class LoginActivity : AppCompatActivity() {
                         response.loginResult.userId,
                         response.loginResult.token
                     )
-                ).also {
-                    Log.d("LoginActivity", "Data disimpan: ${response.loginResult.token}")
-                }
+                )
 
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                 DialogHelper.showSuccessDialog(
@@ -77,12 +82,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         playAnimation()
-    }
-
-    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishAffinity()
     }
 
     private fun setUpAction() {

@@ -1,7 +1,5 @@
 package com.example.storyapp.ui.screen.activity.main
 
-import com.example.storyapp.util.SessionPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,11 +28,9 @@ class MainViewModel(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                Log.d("MainViewModel!!!!!!!!!!!!!!!!!!!!!!!!", "try called")
                 val story = repository.getStories()
                 _stories.value = story
             } catch (e: Exception) {
-                Log.d("MainViewModel!!!!!!!!!!!!!!!!!!!!!!!!", "catch called")
                 _stories.value = StoryResponse(
                     error = true,
                     message = e.message.toString(),

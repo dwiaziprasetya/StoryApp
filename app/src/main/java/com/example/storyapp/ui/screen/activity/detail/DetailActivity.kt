@@ -1,7 +1,6 @@
 package com.example.storyapp.ui.screen.activity.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
@@ -27,11 +26,31 @@ class DetailActivity : AppCompatActivity() {
         factory = ViewModelFactory.getInstance(this, id.toString())
 
         viewModel.detailStory.observe(this) { storyResponse ->
-            setData(storyResponse.story)
+            if (storyResponse.error) {
+                DialogHelper.showErrorDialog(
+                    this,
+                    "Stories Failed",
+                    storyResponse.message,
+                )
+            } else {
+                setData(storyResponse.story)
+                DialogHelper.showSuccessDialog(
+                    this,
+                    "Success",
+                    "Stories Loaded",
+                    navigateTo = {
+                        loadingDialog?.dismiss()
+                    }
+                )
+            }
+        }
+
+        binding.tlbrDetailStory.setNavigationOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
-            Log.d("woi", isLoading.toString())
             if (isLoading) {
                 showLoadingDialog()
             } else {

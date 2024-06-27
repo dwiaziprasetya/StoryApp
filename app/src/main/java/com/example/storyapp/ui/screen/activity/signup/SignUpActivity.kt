@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +28,12 @@ class SignUpActivity : AppCompatActivity() {
     private val viewModel by viewModels<SignUpViewModel> {factory}
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT
+            )
+        )
         super.onCreate(savedInstanceState)
 
         binding = ActivitySignUpBinding.inflate(layoutInflater)
