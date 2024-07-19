@@ -42,10 +42,12 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginResponse.observe(this) { response ->
             if (response.error) {
+                loadingDialog?.dismissWithAnimation()
                 DialogHelper.showErrorDialog(
                     this,
                     "Login Failed",
                     response.message,
+                    navigateTo = { loadingDialog?.dismissWithAnimation() }
                 )
                 Toast.makeText(this, "Registration failed: ${response.message}", Toast.LENGTH_SHORT).show()
             } else {
@@ -78,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 showLoadingDialog()
             } else {
                 dismissLoadingDialog()
+                loadingDialog?.dismissWithAnimation()
             }
         }
 
@@ -115,6 +118,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             lifecycleScope.launch {
+                loadingDialog?.dismissWithAnimation()
                 viewModel.login(email, password)
             }
         }

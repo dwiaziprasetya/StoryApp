@@ -12,13 +12,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:background="?attr/colorOnPrimary"
         android:layout_width="match_parent"
-        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTint="?attr/colorOnPrimary"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tlbr_add_story"
             android:layout_width="match_parent"
-            app:titleTextColor="?attr/colorOnPrimary"
+            app:titleTextColor="?attr/colorOnSecondary"
             app:navigationIcon="@drawable/ic_arrow_back_default"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"

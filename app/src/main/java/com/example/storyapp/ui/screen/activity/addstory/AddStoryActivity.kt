@@ -19,6 +19,7 @@ import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.screen.activity.camera.CameraActivity
 import com.example.storyapp.ui.screen.activity.camera.CameraActivity.Companion.CAMERAX_RESULT
+import com.example.storyapp.ui.screen.activity.main.MainActivity
 import com.example.storyapp.util.uriToFile
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -135,7 +136,9 @@ class AddStoryActivity : AppCompatActivity() {
                         "Success",
                         "Upload Successful",
                         navigateTo = {
-                            finish()
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
                         }
                     )
                 }

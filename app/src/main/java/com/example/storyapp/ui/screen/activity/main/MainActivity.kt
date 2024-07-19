@@ -103,11 +103,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        viewModel.getStories()
-    }
-
     private fun showLoadingDialog() {
         if (loadingDialog == null) {
             loadingDialog = DialogHelper.showLoadingDialog(this)

@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.databinding.ItemStoryBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -15,13 +17,16 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_
 
     class MyViewHolder(private val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: ListStoryItem) {
+            binding.tvDate.text = formatDate(story.createdAt)
             binding.tvDescription.text = story.description
-            binding.tvUsername.text = story.name
+            binding.tvUsername.text = story.name.uppercase(Locale.getDefault())
             Glide.with(itemView)
                 .load(story.photoUrl)
                 .into(binding.imgImageStory)
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -59,4 +64,12 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_
     interface OnItemCallback {
         fun onItemClicked(story: ListStoryItem)
     }
+}
+
+fun formatDate(dateString: String): String {
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+    val date = inputFormat.parse(dateString)
+    return outputFormat.format(date!!)
 }

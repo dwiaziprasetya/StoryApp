@@ -1,5 +1,6 @@
 package com.example.storyapp.ui.screen.activity.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,8 @@ import com.example.storyapp.data.remote.response.Story
 import com.example.storyapp.databinding.ActivityDetailBinding
 import com.example.storyapp.helper.DialogHelper
 import com.example.storyapp.helper.ViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailBinding
@@ -34,14 +37,6 @@ class DetailActivity : AppCompatActivity() {
                 )
             } else {
                 setData(storyResponse.story)
-                DialogHelper.showSuccessDialog(
-                    this,
-                    "Success",
-                    "Stories Loaded",
-                    navigateTo = {
-                        loadingDialog?.dismiss()
-                    }
-                )
             }
         }
 
@@ -59,12 +54,21 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun formatDate(dateString: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
+        val date = inputFormat.parse(dateString)
+        return outputFormat.format(date!!)
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun setData(story: Story){
         binding.apply {
             Glide.with(this@DetailActivity)
                 .load(story.photoUrl)
                 .into(imageStory)
+            storyDate.text = "Upload : " + formatDate(story.createdAt)
             storyTitle.text = story.name
             tvDescription.text = story.description
         }

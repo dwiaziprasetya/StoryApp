@@ -7,49 +7,68 @@
     android:layout_margin="16dp"
     android:background="?attr/colorOnPrimary"
     app:cardCornerRadius="10dp"
-    app:cardElevation="4dp">
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        tools:ignore="HardcodedText">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_image_story"
-            android:layout_width="0dp"
-            android:layout_height="280dp"
+            app:shapeAppearance="@style/roundedImageView"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_place_holder"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@drawable/ahahaha" />
 
         <TextView
             android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_toEndOf="@id/img_image_story"
             android:fontFamily="@font/poppinssemibold"
-            android:text="@string/story_username"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/img_image_story"
-            app:layout_constraintTop_toBottomOf="@+id/img_image_story" />
+            android:textSize="14sp"
+            android:textColor="@color/blueOcean"
+            app:layout_constraintEnd_toStartOf="@+id/img_image_story"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="LEBRON JAMES"/>
 
         <TextView
             android:id="@+id/tv_description"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/img_image_story"
             android:fontFamily="@font/poppinsregular"
-            android:justificationMode="inter_word"
-            android:maxLines="3"
-            android:text="@string/story_desc"
+            android:maxLines="4"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img_image_story"
+            app:layout_constraintStart_toStartOf="@+id/tv_username"
             app:layout_constraintTop_toBottomOf="@+id/tv_username"
-            tools:ignore="UnusedAttribute,VisualLintLongText"
-            tools:layout_editor_absoluteX="10dp" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="LeBron James adalah pemain bola basket profesional asal Amerika Serikat, dikenal sebagai salah satu pemain terbaik dalam sejarah NBA. Lahir pada 30 Desember 1984 di Akron, Ohio, LeBron memulai kariernya di NBA dengan Cleveland Cavaliers pada 2003. Dikenal dengan kekuatan fisik, kemampuan serba bisa, dan kecerdasannya di lapangan, ia telah meraih banyak penghargaan, termasuk empat gelar NBA dan empat penghargaan MVP" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:textColor="#767676"
+            android:layout_height="wrap_content"
+            android:text="2024-01-02"
+            app:layout_constraintEnd_toStartOf="@+id/img_image_story"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_description"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
