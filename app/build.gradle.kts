@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps.v1810)
     implementation(libs.androidx.core.splashscreen)
