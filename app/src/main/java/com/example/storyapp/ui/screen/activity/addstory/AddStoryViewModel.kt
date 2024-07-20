@@ -22,12 +22,14 @@ class AddStoryViewModel(
 
     suspend fun addStory(
         file: MultipartBody.Part,
-        description: RequestBody
+        description: RequestBody,
+        lat: RequestBody? = null,
+        lon: RequestBody? = null
     ) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val addStory = userRepository.uploadImage(file, description)
+                val addStory = userRepository.uploadStory(file, description, lat, lon)
                 _addStoryResponse.value = addStory
                 _isLoading.value = false
             } catch (e: Exception) {
@@ -35,9 +37,7 @@ class AddStoryViewModel(
                     error = true,
                     message = e.message.toString()
                 )
-            } finally {
-                _isLoading.value = false
-            }
+            } finally { _isLoading.value = false }
         }
     }
 }

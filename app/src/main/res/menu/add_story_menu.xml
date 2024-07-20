@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add_location"
+        app:showAsAction="ifRoom"
+        android:title="@string/tambah_lokasi"
+        android:icon="@drawable/ic_add_location"/>
+    <item
+        android:id="@+id/reset_location"
+        android:title="@string/reset_location"
+        app:showAsAction="never"/>
+</menu>

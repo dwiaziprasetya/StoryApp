@@ -17,6 +17,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tlbr_add_story"
+            app:menu="@menu/add_story_menu"
             android:layout_width="match_parent"
             app:titleTextColor="?attr/colorOnSecondary"
             app:navigationIcon="@drawable/ic_arrow_back_default"
@@ -141,6 +142,19 @@
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="@+id/et_description"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppinsregular"
+                app:layout_constraintStart_toStartOf="@+id/et_description"
+                app:layout_constraintTop_toBottomOf="@id/et_description" />
 
             <Button
                 android:id="@+id/uploadButton"

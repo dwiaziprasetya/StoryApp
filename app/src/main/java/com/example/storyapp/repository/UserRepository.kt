@@ -53,15 +53,13 @@ class UserRepository private constructor(
         return apiService.getStoriesWithLocation()
     }
 
-//    suspend fun getStories(): StoryResponse {
-//        return apiService.getStories()
-//    }
-
-    suspend fun uploadImage(
+    suspend fun uploadStory(
         file: MultipartBody.Part,
-        description: RequestBody
+        description: RequestBody,
+        lat: RequestBody? = null,
+        lon: RequestBody? = null
     ) : FileUploadResponse {
-        return apiService.addStory(file, description)
+        return apiService.addStory(file, description, lat, lon)
     }
 
     suspend fun register(

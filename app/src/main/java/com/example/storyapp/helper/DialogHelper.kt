@@ -27,7 +27,26 @@ object DialogHelper {
             title,
             textContent,
             SweetAlertDialog.SUCCESS_TYPE,
-            navigateTo
+            navigateTo = navigateTo
+        )
+    }
+
+    fun showWarningDialog(
+        context: Context,
+        title: String?,
+        textContent: String?,
+        navigateTo: () -> Unit = {},
+        setCancelable: () -> Unit,
+        setCancel: Boolean
+    ) {
+        showDialog(
+            context,
+            title,
+            textContent,
+            SweetAlertDialog.WARNING_TYPE,
+            navigateTo = navigateTo,
+            setCancelable = setCancelable,
+            setCancel = setCancel
         )
     }
 
@@ -62,7 +81,7 @@ object DialogHelper {
             title,
             textContent,
             SweetAlertDialog.ERROR_TYPE,
-            navigateTo
+            navigateTo = navigateTo
         )
     }
 
@@ -71,18 +90,27 @@ object DialogHelper {
         title: String?,
         textContent: String?,
         alertType: Int,
-        navigateTo: () -> Unit = {}
+        setCancel: Boolean = false,
+        navigateTo: () -> Unit = {},
+        setCancelable: () -> Unit = {}
     ) {
         val customFont = getCustomFont(context)
 
         val dialog = SweetAlertDialog(context, alertType)
             .setTitleText(title)
-            .setConfirmText("OK")
+            .setConfirmText("Ok")
             .setContentText(textContent)
             .setConfirmClickListener {
                 navigateTo()
                 it.dismissWithAnimation()
             }
+
+        if (setCancel) {
+            dialog.setCancelClickListener {
+                setCancelable()
+                it.dismissWithAnimation()
+            }.setCancelText("Cancel")
+        }
 
         dialog.setCanceledOnTouchOutside(true)
 
@@ -91,11 +119,13 @@ object DialogHelper {
         val titleText = dialog.findViewById<TextView>(cn.pedant.SweetAlert.R.id.title_text)
         val contentText = dialog.findViewById<TextView>(cn.pedant.SweetAlert.R.id.content_text)
         val confirmButton = dialog.findViewById<Button>(cn.pedant.SweetAlert.R.id.confirm_button)
+        val cancelButton = dialog.findViewById<Button>(cn.pedant.SweetAlert.R.id.cancel_button)
 
 
         titleText?.typeface = customFont
         contentText?.typeface = customFont
         confirmButton?.typeface = customFont
+        cancelButton?.typeface = customFont
 
         confirmButton.backgroundTintList = ContextCompat.getColorStateList(context, R.color.purpleOcean)
     }

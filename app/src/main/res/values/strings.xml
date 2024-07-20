@@ -33,4 +33,6 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="google_maps">Google Maps</string>
     <string name="coba_lagi">Coba Lagi</string>
+    <string name="tambah_lokasi">tambah lokasi</string>
+    <string name="reset_location">reset location</string>
 </resources>
