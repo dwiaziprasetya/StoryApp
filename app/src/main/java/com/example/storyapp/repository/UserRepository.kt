@@ -33,8 +33,8 @@ class UserRepository private constructor(
         return apiService.getDetailStory(id)
     }
 
-    suspend fun getStoriesWithLocation(location: Int) : StoryResponse {
-        return apiService.getStoriesWithLocation(location)
+    suspend fun getStoriesWithLocation() : StoryResponse {
+        return apiService.getStoriesWithLocation()
     }
 
     suspend fun getStories(): StoryResponse {
