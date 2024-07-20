@@ -26,6 +26,7 @@ import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.screen.activity.camera.CameraActivity
 import com.example.storyapp.ui.screen.activity.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.storyapp.ui.screen.activity.main.MainActivity
+import com.example.storyapp.util.reduceFileImage
 import com.example.storyapp.util.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -193,7 +194,7 @@ class AddStoryActivity : AppCompatActivity() {
 
     private fun uploadImage() {
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this)
+            val imageFile = uriToFile(uri, this).reduceFileImage()
             val description = binding.etDescriptionInput.text.toString()
             showLoadingDialog()
 

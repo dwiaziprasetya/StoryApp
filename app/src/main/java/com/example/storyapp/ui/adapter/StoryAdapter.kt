@@ -24,6 +24,14 @@ class StoryAdapter : PagingDataAdapter<ListStoryItem, StoryAdapter.MyViewHolder>
                 .load(story.photoUrl)
                 .into(binding.imgImageStory)
         }
+
+        private fun formatDate(dateString: String): String {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            val date = inputFormat.parse(dateString)
+            return outputFormat.format(date!!)
+        }
     }
 
 
@@ -64,12 +72,4 @@ class StoryAdapter : PagingDataAdapter<ListStoryItem, StoryAdapter.MyViewHolder>
     interface OnItemCallback {
         fun onItemClicked(story: ListStoryItem)
     }
-}
-
-fun formatDate(dateString: String): String {
-    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-    val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
-    val date = inputFormat.parse(dateString)
-    return outputFormat.format(date!!)
 }
