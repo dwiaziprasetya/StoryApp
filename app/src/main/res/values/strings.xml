@@ -30,4 +30,6 @@
     <string name="camera">Camera</string>
     <string name="item_story">item story</string>
     <string name="story_date">2024-09-24</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="google_maps">Google Maps</string>
 </resources>

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-parcelize")
     id ("androidx.navigation.safeargs")
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
@@ -43,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps.v1810)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)

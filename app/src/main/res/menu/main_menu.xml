@@ -5,4 +5,8 @@
         android:id="@+id/logout_menu"
         app:showAsAction="never"
         android:title="@string/logout"/>
+    <item
+        android:id="@+id/gmaps_menu"
+        app:showAsAction="never"
+        android:title="@string/google_maps"/>
 </menu>

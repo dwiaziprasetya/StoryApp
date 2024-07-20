@@ -15,6 +15,7 @@ import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.adapter.StoryAdapter
 import com.example.storyapp.ui.screen.activity.addstory.AddStoryActivity
 import com.example.storyapp.ui.screen.activity.detail.DetailActivity
+import com.example.storyapp.ui.screen.activity.gmaps.MapsActivity
 import com.example.storyapp.ui.screen.activity.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
@@ -79,6 +80,10 @@ class MainActivity : AppCompatActivity() {
             when(menuItem.itemId) {
                 R.id.logout_menu -> {
                     viewModel.logout()
+                    true
+                }
+                R.id.gmaps_menu -> {
+                    startActivity(Intent(this, MapsActivity::class.java))
                     true
                 }
                 else -> false
