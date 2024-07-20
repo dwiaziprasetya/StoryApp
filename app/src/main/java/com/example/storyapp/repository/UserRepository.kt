@@ -1,7 +1,14 @@
 package com.example.storyapp.repository
 
+import androidx.lifecycle.LiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import com.example.storyapp.data.StoryPagingSource
 import com.example.storyapp.data.remote.response.DetailStoryResponse
 import com.example.storyapp.data.remote.response.FileUploadResponse
+import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.response.LoginResult
 import com.example.storyapp.data.remote.response.RegisterResponse
@@ -16,6 +23,15 @@ class UserRepository private constructor(
     private val apiService : ApiService,
     private val pref: SessionPreferences
 ){
+
+    fun getStory() : LiveData<PagingData<ListStoryItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = { StoryPagingSource(apiService) }
+        ).liveData
+    }
 
     fun getSession() : Flow<LoginResult> {
         return pref.getSession()
@@ -37,9 +53,9 @@ class UserRepository private constructor(
         return apiService.getStoriesWithLocation()
     }
 
-    suspend fun getStories(): StoryResponse {
-        return apiService.getStories()
-    }
+//    suspend fun getStories(): StoryResponse {
+//        return apiService.getStories()
+//    }
 
     suspend fun uploadImage(
         file: MultipartBody.Part,

@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.storyapp.R
+import com.example.storyapp.data.LoadingStateAdapter
 import com.example.storyapp.data.remote.response.ListStoryItem
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.helper.DialogHelper
@@ -44,22 +46,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.stories.observe(this) { response ->
-            if (response.error) {
-                DialogHelper.showErrorDialog(
-                    this,
-                    "Stories Failed",
-                    response.message,
-                )
-            } else {
-                storyAdapter.submitList(response.listStory)
-            }
+        viewModel.story.observe(this) {
+           storyAdapter.submitData(lifecycle, it)
         }
 
         storyAdapter = StoryAdapter()
         binding.rvStoryList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = storyAdapter
+            adapter = storyAdapter.withLoadStateFooter(
+                footer = LoadingStateAdapter { storyAdapter.retry() }
+            )
+        }
+
+        storyAdapter.addLoadStateListener { loadState ->
+            if (loadState.refresh is LoadState.Loading) {
+                showLoadingDialog()
+            } else {
+                dismissLoadingDialog()
+            }
         }
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemCallback {
@@ -87,23 +91,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 else -> false
-            }
-        }
-
-        viewModel.isLoading.observe(this) { isLoading ->
-            loadingDialog?.setCanceledOnTouchOutside(true)
-            if (isLoading) {
-                showLoadingDialog()
-            } else {
-                dismissLoadingDialog()
-                DialogHelper.showSuccessDialog(
-                    this,
-                    "Success",
-                    "Stories Loaded",
-                    navigateTo = {
-                        loadingDialog?.dismiss()
-                    }
-                )
             }
         }
     }

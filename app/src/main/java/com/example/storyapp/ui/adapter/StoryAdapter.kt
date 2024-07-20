@@ -2,8 +2,8 @@ package com.example.storyapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.storyapp.data.remote.response.ListStoryItem
@@ -11,7 +11,7 @@ import com.example.storyapp.databinding.ItemStoryBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class StoryAdapter : PagingDataAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var onItemCalback : OnItemCallback
 
@@ -35,7 +35,7 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.MyViewHolder>(DIFF_
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val story = getItem(position)
-        holder.bind(story)
+        holder.bind(story!!)
         holder.itemView.setOnClickListener {
             onItemCalback.onItemClicked(story)
         }
